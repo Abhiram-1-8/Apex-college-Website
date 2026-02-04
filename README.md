@@ -1,5 +1,3 @@
-# Apex-college-Website
-Apex Portal is a responsive college management system UI built with HTML, CSS, and JavaScript. It provides separate dashboards for students and faculty to manage academics, attendance, fees, results, and communication, simulating a real world  portal.
 # 🎓 Apex Portal – College Management System (Frontend)
 
 Apex Portal is a responsive **College Management System UI** built using **HTML, CSS, and JavaScript**.  
@@ -18,4 +16,60 @@ apex-portal/
 ├── style.css         # Complete styling for landing page & dashboards
 ├── script.js         # JavaScript logic (login, data rendering, interactions)
 └── images/           # Images used in UI (campus, courses, backgrounds, etc.)
+
+## 🚀 Features
+
+### 🧑‍🎓 Student Portal
+- Dashboard Overview (Roll No, Branch, Semester, Credits)
+- Academics (Subject list with attendance %)
+- Subject-wise Attendance (Last 20 days view)
+- Fees & Scholarship  
+  - Total Fee  
+  - Paid Fee  
+  - Pending Fee  
+  - Online Payment simulation (PhonePe, GPay, Paytm, Card)
+- Results (Semester GPA)
+- Schedule (Upcoming classes)
+- Mentor Connect (Chat simulation)
+- Profile popup  
+  - Name  
+  - Email  
+  - Phone  
+  - DOB  
+  - Father Name  
+  - Mother Name  
+  - Caste  
+  - Religion  
+  - Blood Group  
+- AI Help Bot  
+  - Login issues  
+  - Fees  
+  - Attendance  
+  - Navigation help  
+
+---
+
+### 👩‍🏫 Faculty Hub
+- Assigned Subjects  
+- Manage Students  
+- Mark Attendance (Present / Absent)  
+- Update Exam Marks:  
+  - Unit Test 1  
+  - Unit Test 2  
+  - Unit Test 3  
+  - Mid Term 1  
+  - Mid Term 2  
+
+---
+
+## 🛠️ Tech Stack
+- **HTML5** – Structure  
+- **CSS3** – Styling & Layout  
+- **JavaScript** – Interactions & Data Rendering  
+
+---
+
+## ⚠️ Note
+This project is a **frontend-only simulation**.  
+No real authentication or payment gateway is connected.
 
