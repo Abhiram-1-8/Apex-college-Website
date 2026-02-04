@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | Apex Institute</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar" style="background: #1e293b;">
+            <div class="sidebar-brand">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Faculty Hub</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showFacultySection('subjects')"><i class="fas fa-book"></i>
+                        <span>Assigned Subjects</span></a></li>
+                <li><a href="#" onclick="showFacultySection('students')"><i class="fas fa-users"></i> <span>Manage
+                            Students</span></a></li>
+                <li><a href="#" onclick="showFacultySection('attendance')"><i class="fas fa-check-double"></i>
+                        <span>Attendance</span></a></li>
+                <li><a href="#" onclick="showFacultySection('marks')"><i class="fas fa-edit"></i>
+                        <span>Grading</span></a></li>
+                <li style="margin-top: auto;"><a href="javascript:void(0)" onclick="logout()" class="logout-link"><i
+                            class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content"
+            style="background: linear-gradient(rgba(248, 250, 252, 0.4), rgba(248, 250, 252, 0.4)), url('images/faculty-bg.png') center/cover fixed;">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                    <h1 id="faculty-section-title">Assigned Subjects</h1>
+                    <p id="current-date" style="color: var(--text-muted);"></p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="text-align: right;">
+                        <h4 id="faculty-name-display">Dr. Robert Wilson</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">Professor (CS-Dept)</p>
+                    </div>
+                    <div
+                        style="width: 45px; height: 45px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">
+                        RW</div>
+                </div>
+            </header>
+
+            <!-- Subjects Section -->
+            <div id="subjects-section" class="dash-section">
+                <div class="course-grid">
+                    <div class="course-card">
+                        <h3>Artificial Intelligence</h3>
+                        <p>B.Tech CS - Sem 4</p>
+                        <div style="margin-top: 1rem; display: flex; justify-content: space-between;">
+                            <span>64 Students</span>
+                            <span style="color: #22c55e;">Active</span>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <h3>Neural Networks</h3>
+                        <p>M.Tech - Sem 2</p>
+                        <div style="margin-top: 1rem; display: flex; justify-content: space-between;">
+                            <span>28 Students</span>
+                            <span style="color: #22c55e;">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Section -->
+            <div id="students-section" class="dash-section" style="display: none;">
+                <div
+                    style="background: var(--white); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Student List (B.Tech CS - Sem 4)</h3>
+                        <input type="text" placeholder="Search by name/roll..."
+                            style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    </div>
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid #f1f5f9;">
+                                    <th style="padding: 1rem;">Roll No</th>
+                                    <th style="padding: 1rem;">Name</th>
+                                    <th style="padding: 1rem;">Branch</th>
+                                    <th style="padding: 1rem;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="faculty-students-tbody">
+                                <!-- Dynamic Data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Section -->
+            <div id="attendance-section" class="dash-section" style="display: none;">
+                <div
+                    style="background: var(--white); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Mark Attendance - Feb 02, 2026</h3>
+                        <button class="submit-btn" style="width: auto; padding: 0.5rem 1rem;"
+                            onclick="submitAttendance()">Submit Attendance</button>
+                    </div>
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid #f1f5f9;">
+                                    <th style="padding: 1rem;">Roll No</th>
+                                    <th style="padding: 1rem;">Name</th>
+                                    <th style="padding: 1rem; text-align: center;">Present</th>
+                                    <th style="padding: 1rem; text-align: center;">Absent</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendance-tbody">
+                                <!-- Dynamic Data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marks Section -->
+            <div id="marks-section" class="dash-section" style="display: none;">
+                <div
+                    style="background: var(--white); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                    <h3>Enter Mid-Sem Marks</h3>
+                    <div class="table-container" style="margin-top: 1.5rem; overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid #f1f5f9;">
+                                    <th style="padding: 1rem;">Roll No</th>
+                                    <th style="padding: 1rem;">Name</th>
+                                    <th style="padding: 1rem;">Subject</th>
+                                    <th style="padding: 1rem;">Marks (/50)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="marks-tbody">
+                                <!-- Dynamic Data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFacultyDashboard();
+            document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        });
+    </script>
+</body>
+
+</html>
